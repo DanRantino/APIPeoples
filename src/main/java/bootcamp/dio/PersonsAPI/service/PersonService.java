@@ -54,6 +54,7 @@ public class PersonService {
         // Método único para verificar existente
         verifyExists(id);
         Person personToUpdate = personMapper.toModel(personDTO);
+        // Adicionado Id dos parametros da requisição para não precisar informar no body
         personToUpdate.setId(id);
         Person updatedPerson = personRepository.save(personToUpdate);
 
