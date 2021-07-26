@@ -1,11 +1,14 @@
 package bootcamp.dio.PersonsAPI.controller;
 
-import bootcamp.dio.PersonsAPI.dto.response;
+import bootcamp.dio.PersonsAPI.dto.request.PersonDTO;
+import bootcamp.dio.PersonsAPI.dto.response.MessageResponseDTO;
 import bootcamp.dio.PersonsAPI.entity.Person;
 import bootcamp.dio.PersonsAPI.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/people")
@@ -20,8 +23,8 @@ public class PersonController {
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public response createPerson(@RequestBody Person person)
+    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO)
     {
-        return personService.createPerson(person);
+        return personService.createPerson(personDTO);
     }
 }
