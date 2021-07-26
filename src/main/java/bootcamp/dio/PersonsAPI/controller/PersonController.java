@@ -37,6 +37,11 @@ public class PersonController {
     public PersonDTO findId(@PathVariable Long id) throws PersonNotFoundExecption {
         return personService.findById(id);
     }
+    @PutMapping("/{id}")
+    public MessageResponseDTO updateOne(@PathVariable Long id,@RequestBody PersonDTO personDTO) throws PersonNotFoundExecption {
+        return personService.updateOne(id,personDTO);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteOne(@PathVariable Long id) throws PersonNotFoundExecption {
