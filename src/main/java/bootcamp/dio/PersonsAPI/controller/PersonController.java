@@ -2,7 +2,6 @@ package bootcamp.dio.PersonsAPI.controller;
 
 import bootcamp.dio.PersonsAPI.dto.request.PersonDTO;
 import bootcamp.dio.PersonsAPI.dto.response.MessageResponseDTO;
-import bootcamp.dio.PersonsAPI.entity.Person;
 import bootcamp.dio.PersonsAPI.execpitons.PersonNotFoundExecption;
 import bootcamp.dio.PersonsAPI.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +36,10 @@ public class PersonController {
     @GetMapping("/{id}")
     public PersonDTO findId(@PathVariable Long id) throws PersonNotFoundExecption {
         return personService.findById(id);
+    }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteOne(@PathVariable Long id) throws PersonNotFoundExecption {
+        personService.deleteOne(id);
     }
 }

@@ -41,10 +41,18 @@ public class PersonService {
                 .map(personMapper::toDto)
                 .collect(Collectors.toList());
     }
+    private Person verifyExists(Long id)throws PersonNotFoundExecption {
+        Person person = personRepository.findById(id).orElseThrow(()->new PersonNotFoundExecption(id));
+        return person;
+    }
 
     public PersonDTO findById(Long id) throws PersonNotFoundExecption {
-        Person person = personRepository.findById(id).orElseThrow(()->new PersonNotFoundExecption(id));
+        Person person = verifyExists(id);
         return personMapper.toDto(person);
+    }
 
+    public void deleteOne(Long id)throws PersonNotFoundExecption {
+        verifyExists(id);
+        personRepository.deleteById(id);
     }
 }
