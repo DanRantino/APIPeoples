@@ -40,6 +40,7 @@ public class PersonService {
     }
 
     public PersonDTO findById(Long id) throws PersonNotFoundExecption {
+        // Método único para verificar existente retirbabdi oessias
         Person person = verifyExists(id);
         return personMapper.toDto(person);
     }
@@ -50,6 +51,7 @@ public class PersonService {
     }
 
     public MessageResponseDTO updateOne(Long id, PersonDTO personDTO) throws PersonNotFoundExecption {
+        // Método único para verificar existente
         verifyExists(id);
         Person personToUpdate = personMapper.toModel(personDTO);
         personToUpdate.setId(id);
