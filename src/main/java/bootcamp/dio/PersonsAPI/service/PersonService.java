@@ -31,6 +31,7 @@ public class PersonService {
         return createMessage(savedPerson.getId(), "Create person with ID ");
     }
 
+    //Listagem de todos
     public List<PersonDTO> listAll() {
         List<Person> todos = personRepository.findAll();
         return todos
@@ -54,6 +55,7 @@ public class PersonService {
         // Método único para verificar existente
         verifyExists(id);
         Person personToUpdate = personMapper.toModel(personDTO);
+        // Adicionado Id dos parametros da requisição para não precisar informar no body
         personToUpdate.setId(id);
         Person updatedPerson = personRepository.save(personToUpdate);
 
