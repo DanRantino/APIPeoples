@@ -31,6 +31,7 @@ public class PersonService {
         return createMessage(savedPerson.getId(), "Create person with ID ");
     }
 
+    //Listagem de todos
     public List<PersonDTO> listAll() {
         List<Person> todos = personRepository.findAll();
         return todos
